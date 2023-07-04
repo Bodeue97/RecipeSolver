@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace RecipeSolverAPI.Models.Auth
+namespace RecipeSolverAPI.Models.User
 {
     public class UserRegisterRequest
     {

@@ -1,11 +1,13 @@
 
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipeSolverAPI.Data.DataModels
 {
     public class User
     {
-
+        [Key]
         public int Id { get; set; }
+
         public string Email { get; set; } = string.Empty;
         public string? Name { get; set; }
         public string? Surname { get; set; }
@@ -23,5 +25,7 @@ namespace RecipeSolverAPI.Data.DataModels
         public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
 
+    
+        public Pantry? Pantry { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 
 
 
+using Data.DataModels;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using RecipeSolverAPI.Data.DataModels;
@@ -30,6 +31,9 @@ namespace RecipeSolverAPI.Data
         // Properties here like: 
         // public DbSet<ClassName> TableName => Set<ClassName>();
         public DbSet<User> Users => Set<User>();
+        public DbSet<FoodProduct> FoodProducts => Set<FoodProduct>();
+        public DbSet<Pantry> Pantries => Set<Pantry>();
+        public DbSet<PantryItem> PantryItems => Set<PantryItem>();
 
 
     }
