@@ -1,52 +1,41 @@
-
-using System.Net;
-using System.Net.Mail;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 using RecipeSolverAPI.Models.Email;
 using RecipeSolverAPI.Services.Mailer;
+using MimeKit.Text;
 
-namespace RecipeSolverAPI.Services.MailerService;
-public class MailerService : IMailerService
+namespace RecipeSolverAPI.Services.MailerService
 {
-    private readonly IConfiguration _config;
-
-
-    public MailerService(IConfiguration config)
+    public class MailerService : IMailerService
     {
-        _config = config;
-    }
+        private readonly IConfiguration _config;
 
-    public void SendEmail(EmailDto request)
-    {
-        string from = _config.GetSection("Email:Username").Value!;
-        string smtpServer = _config.GetSection("Email:Host").Value!;
-        int port;
-        if (int.TryParse(_config.GetSection("Email:Port").Value!, out int parsedPort))
+        public MailerService(IConfiguration config)
         {
-            port = parsedPort;
-        }
-        else
-        {
-            port = 0;
-            throw new Exception("Invalid port value");
+            _config = config;
         }
 
-        string? username = _config.GetSection("Email:Username").Value!;
-        string? password = _config.GetSection("Email:Password").Value!;
-        try
+       public void SendEmail(EmailDto request)
         {
-            using (SmtpClient smtpClient = new SmtpClient(smtpServer, port))
+            try
             {
-                smtpClient.Credentials = new NetworkCredential(username, password);
-                smtpClient.EnableSsl = true;
+                var email = new MimeMessage();
+                email.From.Add(MailboxAddress.Parse(_config.GetSection("Email:Username").Value));
+                email.To.Add(MailboxAddress.Parse(request.To));
+                email.Subject = request.Subject;
+                email.Body = new TextPart(TextFormat.Html) { Text = request.Body };
 
-                MailMessage mailMessage = new MailMessage(from, request.To, request.Subject, request.Body);
-                smtpClient.Send(mailMessage);
+                using var smtp = new SmtpClient();
+                smtp.Connect(_config.GetSection("Email:Host").Value, Int32.Parse(_config.GetSection("Email:Port").Value!), SecureSocketOptions.SslOnConnect);
+                smtp.Authenticate(_config.GetSection("Email:Username").Value, _config.GetSection("Email:Password").Value);
+                smtp.Send(email);
+                smtp.Disconnect(true);
             }
-        }
-        catch (Exception error)
-        {
-           throw new Exception(error.Message);
-            
+            catch (Exception error)
+            {
+                throw new Exception(error.Message);
+            }
         }
     }
 }

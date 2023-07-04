@@ -12,6 +12,16 @@ namespace RecipeSolverAPI.Data.DataModels
         public string Role { get; set; } = "User";
         public byte[] PasswordHash { get; set; } = new byte[32];
         public byte[] PasswordSalt { get; set; } = new byte[32];
-        public string Language { get; set; } = "pl";
+        public string Token { get; set; } = string.Empty;
+        public DateTime? TokenCreated { get; set; }
+        public DateTime? TokenExpires { get; set; }
+        public string RefreshToken { get; set; } = string.Empty;
+        public DateTime? RefreshTokenCreated { get; set; }
+        public DateTime? RefreshTokenExpires { get; set; }
+        public string? VerificationToken { get; set; }
+        public DateTime? VerifiedAt { get; set; }
+        public string? PasswordResetToken { get; set; }
+        public DateTime? ResetTokenExpires { get; set; }
+
     }
 }
