@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Authentication;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
-using RecipeSolverAPI.Data;
 using RecipeSolverAPI.Data.DataModels;
 using RecipeSolverAPI.Models.Auth;
 using RecipeSolverAPI.Models.Email;

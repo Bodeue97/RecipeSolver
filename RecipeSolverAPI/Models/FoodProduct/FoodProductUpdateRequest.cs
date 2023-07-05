@@ -1,7 +1,9 @@
+
 namespace RecipeSolverAPI.Models.FoodProduct
 {
-    public class FoodProductDto
+    public class FoodProductUpdateRequest
     {
+        
         public string Type { get; set; } = string.Empty;
         public decimal EnergyValue { get; set; }
         public decimal Protein { get; set; }
@@ -15,7 +17,7 @@ namespace RecipeSolverAPI.Models.FoodProduct
         public decimal Fructose { get; set; }
         public decimal Sucrose { get; set; }
         public decimal Lactose { get; set; }
-        public string? Unit { get; set; }
+        public string Unit { get; set; } = string.Empty;
         public decimal Fiber { get; set; }
         public decimal Sodium { get; set; }
         public decimal Potassium { get; set; }
@@ -31,6 +33,6 @@ namespace RecipeSolverAPI.Models.FoodProduct
         public decimal Riboflavin { get; set; }
         public decimal Niacin { get; set; }
         public decimal VitaminC { get; set; }
-        
+
     }
 }

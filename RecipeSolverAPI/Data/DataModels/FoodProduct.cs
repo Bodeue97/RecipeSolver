@@ -1,13 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Data.DataModels;
-
+namespace RecipeSolverAPI.Data.DataModels;
 public class FoodProduct
 {
     [Key]
     public int Id { get; set; }
 
-    public string? Type { get; set; }
+    public string Type { get; set; } = string.Empty;
     public decimal EnergyValue { get; set; }
     public decimal Protein { get; set; }
     public decimal TotalFat { get; set; }
@@ -20,7 +19,7 @@ public class FoodProduct
     public decimal Fructose { get; set; }
     public decimal Sucrose { get; set; }
     public decimal Lactose { get; set; }
-    public string? Unit { get; set; }
+    public string Unit { get; set; } = string.Empty;
     public decimal Fiber { get; set; }
     public decimal Sodium { get; set; }
     public decimal Potassium { get; set; }

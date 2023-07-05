@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Data.DataModels;
-using RecipeSolverAPI.Data.DataModels;
 
+namespace RecipeSolverAPI.Data.DataModels;
 public class PantryItem
 {
     [Key]
