@@ -22,6 +22,7 @@ namespace RecipeSolverAPI.Services.FoodProduct
             {
                 Data.DataModels.FoodProduct newProduct = new()
                 {
+                    Name = request.Name,
                     Type = request.Type,
                     EnergyValue = request.EnergyValue,
                     Protein = request.Protein,
@@ -122,7 +123,7 @@ namespace RecipeSolverAPI.Services.FoodProduct
                 ?? throw new Exception("Food product not found");
 
 
-
+                existingProduct.Name = request.Name;
                 existingProduct.Type = request.Type;
                 existingProduct.EnergyValue = request.EnergyValue;
                 existingProduct.Protein = request.Protein;

@@ -3,6 +3,7 @@ namespace RecipeSolverAPI.Models.FoodProduct
 {
     public class FoodProductCreateRequest
     {
+        public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;
         public decimal EnergyValue { get; set; }
         public decimal Protein { get; set; }
