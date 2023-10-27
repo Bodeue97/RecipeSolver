@@ -27,9 +27,17 @@ namespace RecipeSolverAPI.Data
                 Console.WriteLine(error.Message);
             }
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Pantry)
+                .WithOne(p => p.User)
+                .HasForeignKey<Pantry>(p => p.UserId); 
 
-        // Properties here like: 
-        // public DbSet<ClassName> TableName => Set<ClassName>();
+            base.OnModelCreating(modelBuilder);
+        }
+
+
         public DbSet<User> Users => Set<User>();
         public DbSet<FoodProduct> FoodProducts => Set<FoodProduct>();
         public DbSet<Pantry> Pantries => Set<Pantry>();

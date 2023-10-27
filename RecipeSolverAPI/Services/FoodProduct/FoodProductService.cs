@@ -16,7 +16,7 @@ namespace RecipeSolverAPI.Services.FoodProduct
             _context = context;
             _mapper = mapper;
         }
-        public async Task<FoodProductDto> Create(FoodProductCreateRequest request)
+        public async Task<FoodProductDto> Create(FoodProductRequest request)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace RecipeSolverAPI.Services.FoodProduct
             }
         }
 
-        public async Task<FoodProductDto> Update(FoodProductUpdateRequest request, int id)
+        public async Task<FoodProductDto> Update(FoodProductRequest request, int id)
         {
             try
             {

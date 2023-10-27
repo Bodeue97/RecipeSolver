@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace RecipeSolverAPI.Data.DataModels
 {
@@ -7,11 +9,13 @@ namespace RecipeSolverAPI.Data.DataModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        // Foreign Key to User
+        [ForeignKey("UserId")]
         public int UserId { get; set; }
-
         public User? User { get; set; }
 
-        public List<PantryItem>? PantryItems { get; set; }
+        // Navigation property to PantryItems
+        [JsonIgnore]
+        public List<PantryItem>? Items { get; set; }
     }
 }

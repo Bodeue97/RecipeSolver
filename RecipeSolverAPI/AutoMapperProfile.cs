@@ -16,13 +16,18 @@ namespace RecipeSolverAPI
             // Add maps here like this
             // CreateMap<fromType, toType>();
             CreateMap<FoodProduct, FoodProductDto>();
-            CreateMap<Pantry, Models.FoodProduct.FoodProductClass>();
+            CreateMap<FoodProduct, FoodProductClass>();
+
             CreateMap<Pantry, PantryDto>();
-            CreateMap<Pantry, Models.Pantry.PantryClass>();
+            CreateMap<Pantry, PantryClass>();
+
             CreateMap<PantryItem, PantryItemDto>();
-            CreateMap<PantryItem, Models.PantryItem.PantryItemClass>();
+            CreateMap<PantryItem, PantryItemClass>();
+            
             CreateMap<User, UserDto>();
-            CreateMap<User, Models.User.UserClass>();
+            CreateMap<User, UserClass>();
+
+         
         }
 
     }

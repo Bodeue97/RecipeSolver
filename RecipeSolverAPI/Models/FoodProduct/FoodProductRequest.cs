@@ -1,7 +1,7 @@
 
 namespace RecipeSolverAPI.Models.FoodProduct
 {
-    public class FoodProductUpdateRequest
+    public class FoodProductRequest
     {
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = string.Empty;

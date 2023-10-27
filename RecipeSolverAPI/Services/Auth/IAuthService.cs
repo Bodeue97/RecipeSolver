@@ -13,6 +13,7 @@ namespace RecipeSolverAPI.Services.Auth
         Task<UserDto> RefreshToken(TokenRequest request);
         Task<string> ChangePassword(ChangePasswordRequest request);
         string CreateRandomToken();
+        Task<UserDto> Get(int id);
 
 
 

@@ -1,28 +1,29 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RecipeSolverAPI.Models.FoodProduct;
-using RecipeSolverAPI.Services.FoodProduct;
-
+using RecipeSolverAPI.Models.PantryItem;
+using RecipeSolverAPI.Services.PantryItem;
 
 namespace RecipeSolverAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class FoodProductController : ControllerBase
-    {
-        private readonly IFoodProductService _fps;
+    
 
-        public FoodProductController(IFoodProductService fps)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PantryItemController : ControllerBase
+    {
+        private readonly IPantryItemService _pis;
+
+        public PantryItemController(IPantryItemService pis)
         {
-            _fps = fps;
+            _pis = pis;
         }
 
         [HttpPost("Create")]
-        public async Task<ActionResult<FoodProductDto>> Create(FoodProductRequest request)
+        public async Task<ActionResult<PantryItemDto>> Create(PantryItemRequest item)
         {
             try
             {
-                var createdProduct = await _fps.Create(request);
-                return Ok(createdProduct);
+                return Ok(await _pis.Create(item));
             }
             catch (Exception ex)
             {
@@ -31,12 +32,11 @@ namespace RecipeSolverAPI.Controllers
         }
 
         [HttpPatch("Update/{id}")]
-        public async Task<ActionResult<FoodProductDto>> Update(int id, FoodProductRequest request)
+        public async Task<ActionResult<PantryItemDto>> Update(int id, PantryItemRequest item)
         {
             try
-            {
-                var updatedProduct = await _fps.Update(request, id);
-                return Ok(updatedProduct);
+            {                
+                return Ok(await _pis.Update(id, item));
             }
             catch (Exception ex)
             {
@@ -45,12 +45,11 @@ namespace RecipeSolverAPI.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<ActionResult<FoodProductDto>> Get(int id)
+        public async Task<ActionResult<PantryItemDto>> Get(int id)
         {
             try
             {
-                var product = await _fps.Get(id);
-                return Ok(product);
+                return Ok(await _pis.Get(id));
             }
             catch (Exception ex)
             {
@@ -59,12 +58,11 @@ namespace RecipeSolverAPI.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<FoodProductDto>>> GetAll()
+        public async Task<ActionResult<List<PantryItemDto>>> GetAll()
         {
             try
             {
-                var products = await _fps.GetAll();
-                return Ok(products);
+                return Ok(await _pis.GetAll());
             }
             catch (Exception ex)
             {
@@ -77,13 +75,14 @@ namespace RecipeSolverAPI.Controllers
         {
             try
             {
-                var deletedProductId = await _fps.Delete(id);
-                return Ok(deletedProductId);
+                return Ok(await _pis.Delete(id));
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+
+
     }
 }

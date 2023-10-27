@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeSolverAPI.Data.DataModels
 {
@@ -24,8 +25,9 @@ namespace RecipeSolverAPI.Data.DataModels
         public DateTime? VerifiedAt { get; set; }
         public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
-
-    
+        [ForeignKey("PantryId")]
+        public int PantryId { get; set; }
         public Pantry? Pantry { get; set; }
+       
     }
 }

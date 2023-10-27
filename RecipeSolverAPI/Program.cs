@@ -8,6 +8,8 @@ using RecipeSolverAPI.Services.Auth;
 using RecipeSolverAPI.Services.FoodProduct;
 using RecipeSolverAPI.Services.Mailer;
 using RecipeSolverAPI.Services.MailerService;
+using RecipeSolverAPI.Services.Pantry;
+using RecipeSolverAPI.Services.PantryItem;
 using RecipeSolverAPI.Templates;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -32,6 +34,8 @@ builder.Services.AddScoped<IMailerService, MailerService>();
 builder.Services.AddScoped<ITemplate, Template>();
 
 builder.Services.AddScoped<IFoodProductService, FoodProductService>();
+builder.Services.AddScoped<IPantryService, PantryService>();
+builder.Services.AddScoped<IPantryItemService, PantryItemService>();
 
 
 builder.Services.AddSwaggerGen(options =>

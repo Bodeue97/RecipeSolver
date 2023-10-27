@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Authentication;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using RecipeSolverAPI.Data.DataModels;
 using RecipeSolverAPI.Models.Auth;
@@ -19,14 +20,16 @@ namespace RecipeSolverAPI.Services.Auth
         private IHttpContextAccessor _httpContextAccessor;
         private IMailerService _mailerService;
         private ITemplate _template;
+        private IMapper _mapper;
 
-        public AuthService(DataContext context, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMailerService mailerService, ITemplate template)
+        public AuthService(DataContext context, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMailerService mailerService, ITemplate template, IMapper mapper)
         {
             _context = context;
             _config = configuration;
             _httpContextAccessor = httpContextAccessor;
             _mailerService = mailerService;
             _template = template;
+            _mapper = mapper;
         }
 
         public async Task<string> Register(UserRegisterRequest request)
@@ -35,14 +38,14 @@ namespace RecipeSolverAPI.Services.Auth
             {
                 if (_context.Users.Any(items => items.Email == request.Email))
                 {
-                    throw new Exception("user already exists");
+                    throw new Exception("User already exists");
                 }
 
                 CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
                 string randomToken = CreateRandomToken();
                 string verifyToken = CreateRandomToken();
 
-                User user = new()
+                User user = new User
                 {
                     Name = request.Name,
                     Surname = request.Surname,
@@ -50,22 +53,30 @@ namespace RecipeSolverAPI.Services.Auth
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
                     VerificationToken = randomToken,
-
                 };
 
                 await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
 
-                // Wysłanie maila z wygenerowanym już linkem do weryfikacji konta (chwilowo url backend później przekierownaie na front-a).               
+                // Now that the User has been saved and has an Id, create the associated Pantry
+                Data.DataModels.Pantry pantry = new Data.DataModels.Pantry
+                {
+                    UserId = user.Id, // Set the UserId to link to the User
+                    Items = null
+                };
+
+                await _context.Pantries.AddAsync(pantry);
+                await _context.SaveChangesAsync();
+
+                // Link the user to the pantry
+                user.Pantry = pantry;
+                user.PantryId = pantry.Id;
+                await _context.SaveChangesAsync();
+
+
                 string url = $"{_config.GetSection("AppSettings:WebsiteUrl").Value!}/verify/{randomToken}";
-                string template = string.Empty;
-                string subject = string.Empty;
-
-
-
-                template = _template.GenerateEmailVerifyTemplatePL(url, $"{request.Name} {request.Surname}");
-                subject = "RecipeSolver, weryfikacja.";
-
-
+                string template = _template.GenerateEmailVerifyTemplatePL(url, $"{request.Name} {request.Surname}");
+                string subject = "RecipeSolver, weryfikacja.";
 
                 var email = new EmailDto
                 {
@@ -75,7 +86,6 @@ namespace RecipeSolverAPI.Services.Auth
                 };
 
                 await Task.Run(() => _mailerService.SendEmail(email));
-                await _context.SaveChangesAsync();
 
                 return "User created";
             }
@@ -84,6 +94,8 @@ namespace RecipeSolverAPI.Services.Auth
                 throw new Exception(error.Message);
             }
         }
+
+
         public async Task<string> Verify(string verificationToken)
         {
             var user = await _context.Users.FirstOrDefaultAsync(user => user.VerificationToken!.Equals(verificationToken)) ?? throw new Exception("Invalid token");
@@ -112,6 +124,7 @@ namespace RecipeSolverAPI.Services.Auth
 
                 return new UserDto
                 {
+                    Id = user.Id,
                     Name = user.Name!,
                     Surname = user.Surname!,
                     Email = request.Email,
@@ -140,11 +153,11 @@ namespace RecipeSolverAPI.Services.Auth
             string template = string.Empty;
             string subject = string.Empty;
 
-            
-            
-                    template = _template.GenerateEmailResetPasswordTemplatePL(url, user.Name!);
-                    subject = "RecipeSolver, zmiana hasła.";
-             
+
+
+            template = _template.GenerateEmailResetPasswordTemplatePL(url, user.Name!);
+            subject = "RecipeSolver, zmiana hasła.";
+
 
             var _email = new EmailDto
             {
@@ -174,7 +187,7 @@ namespace RecipeSolverAPI.Services.Auth
 
             return "Password changed";
         }
-         public async Task<string> ChangePassword(ChangePasswordRequest request)
+        public async Task<string> ChangePassword(ChangePasswordRequest request)
         {
             if (_httpContextAccessor.HttpContext == null)
             {
@@ -214,7 +227,7 @@ namespace RecipeSolverAPI.Services.Auth
 
             return jwt;
         }
-          public async Task<UserDto> RefreshToken(TokenRequest request)
+        public async Task<UserDto> RefreshToken(TokenRequest request)
         {
             try
             {
@@ -240,6 +253,7 @@ namespace RecipeSolverAPI.Services.Auth
 
                 return new UserDto
                 {
+                    Id = user.Id,
                     Name = user.Name!,
                     Surname = user.Surname!,
                     Email = email,
@@ -297,5 +311,22 @@ namespace RecipeSolverAPI.Services.Auth
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(32));
         }
 
+        public async Task<UserDto> Get(int id)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+                if (user == null)
+                {
+                    throw new Exception("User not found");
+                }
+
+                return _mapper.Map<UserDto>(user);
+            }
+            catch (Exception error)
+            {
+                throw new Exception(error.Message);
+            }
+        }
     }
 }

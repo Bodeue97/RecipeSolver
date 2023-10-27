@@ -36,5 +36,5 @@ public class FoodProduct
     public decimal Niacin { get; set; }
     public decimal VitaminC { get; set; }
 
-    public List<PantryItem>? PantryItems { get; set; }
+    
 }

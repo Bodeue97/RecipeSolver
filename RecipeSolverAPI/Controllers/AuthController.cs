@@ -143,6 +143,16 @@ namespace RecipeSolverAPI.Controllers
                 return BadRequest(error.Message);
             }
         }
+        [HttpGet("Get/{id}")]
+        public async Task<ActionResult<UserDto>> Get(int id){
+            try{
+                return Ok(await _authService.Get(id));
+            }
+            catch(Exception error)
+            {
+                return BadRequest(error.Message);
+            }
+        }
 
     }
 }
