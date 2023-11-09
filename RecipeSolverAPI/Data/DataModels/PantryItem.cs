@@ -6,17 +6,8 @@ namespace RecipeSolverAPI.Data.DataModels;
 public class PantryItem
 {
     [Key]
-    public int Id { get; set; }
-
-    // Foreign Key to Pantry
-    [ForeignKey("PantryId")]
-    public int PantryId { get; set; }
-    public Pantry? Pantry { get; set; }
-
-    // Foreign Key to FoodProduct
-    [ForeignKey("FoodProductId")]
+    public int Id { get; set; } 
     public int ProductId { get; set; }
     public FoodProduct? Product { get; set; }
-
     public decimal Quantity { get; set; }
 }

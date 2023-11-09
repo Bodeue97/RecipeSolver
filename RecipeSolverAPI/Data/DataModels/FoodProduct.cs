@@ -6,6 +6,7 @@ public class FoodProduct
     [Key]
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
+    public string Unit { get; set; } = string.Empty;
     public string Type { get; set; } = string.Empty;
     public decimal EnergyValue { get; set; }
     public decimal Protein { get; set; }
@@ -19,7 +20,6 @@ public class FoodProduct
     public decimal Fructose { get; set; }
     public decimal Sucrose { get; set; }
     public decimal Lactose { get; set; }
-    public string Unit { get; set; } = string.Empty;
     public decimal Fiber { get; set; }
     public decimal Sodium { get; set; }
     public decimal Potassium { get; set; }

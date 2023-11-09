@@ -8,7 +8,6 @@ using RecipeSolverAPI.Services.Auth;
 using RecipeSolverAPI.Services.FoodProduct;
 using RecipeSolverAPI.Services.Mailer;
 using RecipeSolverAPI.Services.MailerService;
-using RecipeSolverAPI.Services.Pantry;
 using RecipeSolverAPI.Services.PantryItem;
 using RecipeSolverAPI.Templates;
 using Swashbuckle.AspNetCore.Filters;
@@ -22,7 +21,6 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
@@ -34,7 +32,6 @@ builder.Services.AddScoped<IMailerService, MailerService>();
 builder.Services.AddScoped<ITemplate, Template>();
 
 builder.Services.AddScoped<IFoodProductService, FoodProductService>();
-builder.Services.AddScoped<IPantryService, PantryService>();
 builder.Services.AddScoped<IPantryItemService, PantryItemService>();
 
 
