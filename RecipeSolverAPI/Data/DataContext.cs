@@ -33,7 +33,10 @@ namespace RecipeSolverAPI.Data
         public DbSet<User> Users => Set<User>();
         public DbSet<FoodProduct> FoodProducts => Set<FoodProduct>();
         public DbSet<PantryItem> PantryItems => Set<PantryItem>();
-
+        public DbSet<IngredientItem> IngredientItems => Set<IngredientItem>();
+        public DbSet<Recipe> Recipes => Set<Recipe>();
+        public DbSet<RecipeRating> RecipeRating => Set<RecipeRating>();
+        public DbSet<TotalNutrition> TotalNutritions => Set<TotalNutrition>();
 
     }
 }
