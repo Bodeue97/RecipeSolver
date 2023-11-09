@@ -2,9 +2,8 @@
 
 TO DO:
 *API:
-1. przebudować api, usunąć pantry, dodawać produkty do użytkownika
-2. dodać model service i controller dla przepisu
-3. później trzeba będzie zrobić DbInitializer żeby populować bazę produktami spożywczymi z książki 
+1. dodać model service i controller dla przepisu
+2. później trzeba będzie zrobić DbInitializer żeby populować bazę produktami spożywczymi z książki 
 
 *FRONT:
 1. stworzyć szkielet, layouty do widoków
