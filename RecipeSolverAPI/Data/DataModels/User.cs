@@ -12,7 +12,6 @@ namespace RecipeSolverAPI.Data.DataModels
         public string Email { get; set; } = string.Empty;
         public string? Name { get; set; }
         public string? Surname { get; set; }
-        public string Role { get; set; } = "User";
         public byte[] PasswordHash { get; set; } = new byte[32];
         public byte[] PasswordSalt { get; set; } = new byte[32];
         public string Token { get; set; } = string.Empty;
@@ -25,7 +24,8 @@ namespace RecipeSolverAPI.Data.DataModels
         public DateTime? VerifiedAt { get; set; }
         public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
-        public List<PantryItem>? PantryItems { get; set; }
-       
+        public List<PantryItem> PantryItems { get; set; } = new List<PantryItem>();
+
+
     }
 }

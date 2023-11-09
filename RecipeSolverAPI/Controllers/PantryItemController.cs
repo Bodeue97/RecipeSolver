@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RecipeSolverAPI.Models.FoodProduct;
 using RecipeSolverAPI.Models.PantryItem;
 using RecipeSolverAPI.Services.PantryItem;
 
@@ -32,11 +31,11 @@ namespace RecipeSolverAPI.Controllers
         }
 
         [HttpPatch("Update/{id}")]
-        public async Task<ActionResult<PantryItemDto>> Update(int id, PantryItemRequest item)
+        public async Task<ActionResult<PantryItemDto>> Update(int id, decimal quantity)
         {
             try
             {                
-                return Ok(await _pis.Update(id, item));
+                return Ok(await _pis.Update(id, quantity));
             }
             catch (Exception ex)
             {
@@ -57,12 +56,12 @@ namespace RecipeSolverAPI.Controllers
             }
         }
 
-        [HttpGet("GetAll")]
-        public async Task<ActionResult<List<PantryItemDto>>> GetAll()
+        [HttpGet("GetUsersItems/{userId}")]
+        public async Task<ActionResult<List<PantryItemDto>>> GetUsersItems(int userId)
         {
             try
             {
-                return Ok(await _pis.GetAll());
+                return Ok(await _pis.GetUsersItems(userId));
             }
             catch (Exception ex)
             {

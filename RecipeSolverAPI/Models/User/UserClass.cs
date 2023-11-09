@@ -1,4 +1,7 @@
+using RecipeSolverAPI.Models.PantryItem;
+
 namespace RecipeSolverAPI.Models.User
+
 {
     public class UserClass
     {
@@ -6,6 +9,11 @@ namespace RecipeSolverAPI.Models.User
         public string Name { get; set; } = string.Empty;
         public string Surname { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-       
+
+        public List<PantryItemClass>? PantryItems { get; set; } 
+
+
+
+
     }
 }

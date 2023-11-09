@@ -1,4 +1,5 @@
-using RecipeSolverAPI.Models.Pantry;
+
+using RecipeSolverAPI.Models.PantryItem;
 
 namespace RecipeSolverAPI.Models.User
 {
@@ -11,7 +12,8 @@ namespace RecipeSolverAPI.Models.User
         public string Token { get; set; } = string.Empty;
         public string VerificationToken { get; set; } = string.Empty;
         public string RefreshToken { get; set; } = string.Empty;
-        public int? PantryId { get; set; }
-       
+        public List<PantryItemClass>? PantryItems { get; set; }
+
+
     }
 }

@@ -6,7 +6,7 @@
 
         public decimal Quantity { get; set; }
         public int ProductId { get; set; }
-        public int PantryId { get; set; }
+        public int? UserId { get; set; }
         
 
     }

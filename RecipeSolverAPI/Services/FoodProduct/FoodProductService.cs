@@ -106,8 +106,8 @@ namespace RecipeSolverAPI.Services.FoodProduct
             try
             {
                 var foodProducts = await _context.FoodProducts.ToListAsync();
-                var foodProductDtos = _mapper.Map<List<FoodProductDto>>(foodProducts);
-                return foodProductDtos;
+                return  _mapper.Map<List<FoodProductDto>>(foodProducts);
+             
             }
             catch (Exception error)
             {

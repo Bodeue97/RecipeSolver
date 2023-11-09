@@ -52,26 +52,17 @@ namespace RecipeSolverAPI.Services.Auth
                     Email = request.Email,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    VerificationToken = randomToken,
+                    VerificationToken = randomToken
+                   
                 };
 
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
 
-                // Now that the User has been saved and has an Id, create the associated Pantry
-                Data.DataModels.Pantry pantry = new Data.DataModels.Pantry
-                {
-                    UserId = user.Id, // Set the UserId to link to the User
-                    Items = null
-                };
+             
 
-                await _context.Pantries.AddAsync(pantry);
-                await _context.SaveChangesAsync();
 
-                // Link the user to the pantry
-                user.Pantry = pantry;
-                user.PantryId = pantry.Id;
-                await _context.SaveChangesAsync();
+             
 
 
                 string url = $"{_config.GetSection("AppSettings:WebsiteUrl").Value!}/verify/{randomToken}";
@@ -211,7 +202,6 @@ namespace RecipeSolverAPI.Services.Auth
             List<Claim> claims = new()
             {
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value!));
@@ -315,7 +305,10 @@ namespace RecipeSolverAPI.Services.Auth
         {
             try
             {
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+                var user = await _context.Users
+                    .Include(pi => pi.PantryItems)
+                    .ThenInclude(pi => pi.Product)
+                    .FirstOrDefaultAsync(u => u.Id == id);
                 if (user == null)
                 {
                     throw new Exception("User not found");
