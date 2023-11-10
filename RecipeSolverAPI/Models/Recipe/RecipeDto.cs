@@ -12,7 +12,7 @@ namespace RecipeSolverAPI.Models.Recipe
         public bool ColdDish { get; set; } = false;
         public int Portions { get; set; } = 1;
         public string Description { get; set; } = string.Empty;
-        public List<IngredientItemClass> Ingredients { get; set; } = new List<IngredientItemClass>();
+        public List<Data.DataModels.IngredientItem> Ingredients { get; set; } = new List<Data.DataModels.IngredientItem>();
 
         public TotalNutrition? TotalNutrition { get; set; }
 
@@ -20,6 +20,6 @@ namespace RecipeSolverAPI.Models.Recipe
         public decimal OverallRating { get; set; }
         public int RatingsNumber { get; set; } = 0;
 
-        public byte[] Photo { get; set; } = Array.Empty<byte>();
+       // public byte[] Photo { get; set; } = Array.Empty<byte>();
     }
 }

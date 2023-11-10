@@ -1,6 +1,7 @@
 using AutoMapper;
 using RecipeSolverAPI.Data.DataModels;
 using RecipeSolverAPI.Models.FoodProduct;
+using RecipeSolverAPI.Models.IngredientItem;
 using RecipeSolverAPI.Models.PantryItem;
 using RecipeSolverAPI.Models.Recipe;
 using RecipeSolverAPI.Models.User;
@@ -25,6 +26,8 @@ namespace RecipeSolverAPI
 
             CreateMap<Recipe, RecipeDto>();
             CreateMap<Recipe, RecipeClass>();
+
+            CreateMap<IngredientItem, IngredientItemClass>();
 
 
 

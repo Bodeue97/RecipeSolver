@@ -2,8 +2,7 @@
 
 TO DO:
 *API:
-1. dodać model service i controller dla przepisu
-2. później trzeba będzie zrobić DbInitializer żeby populować bazę produktami spożywczymi z książki 
+1. później trzeba będzie zrobić DbInitializer żeby populować bazę produktami spożywczymi z książki (robota na koniec/pod koniec).
 
 *FRONT:
 1. stworzyć szkielet, layouty do widoków

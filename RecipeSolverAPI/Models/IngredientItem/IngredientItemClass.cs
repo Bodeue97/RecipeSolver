@@ -11,4 +11,4 @@ namespace RecipeSolverAPI.Models.IngredientItem
         public int? RecipeId { get; set; }
     }
 }
-}
+

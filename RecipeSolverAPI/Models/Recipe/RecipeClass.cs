@@ -20,6 +20,6 @@ namespace RecipeSolverAPI.Models.Recipe
         public decimal OverallRating { get; set; }
         public int RatingsNumber { get; set; } = 0;
 
-        public byte[] Photo { get; set; } = Array.Empty<byte>();
+       // public byte[] Photo { get; set; } = Array.Empty<byte>();
     }
 }
