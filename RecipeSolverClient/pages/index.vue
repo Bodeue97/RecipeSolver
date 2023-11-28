@@ -1,31 +1,19 @@
 <template>
-    This is the home page
+  <h1>Index page</h1>
 </template>
 
 <script>
 export default {
-  components: {
-    
-  },
-  layout: "default",
-  middleware: false,
+  layout: 'default', // Associate this page with the 'default' layout
   data() {
+    return {};
+  },
+  head() {
     return {
-     
-        
-
+      title: 'Strona główna'
     };
   },
-  computed: {
-   
- 
-  },
-  mounted() {
-    
-  },
-  methods: {
-   
-
-  },
+  computed: {},
+  methods: {}
 };
 </script>

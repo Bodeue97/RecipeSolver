@@ -55,6 +55,8 @@ namespace RecipeSolverAPI.Services.Recipe
 
                 Data.DataModels.TotalNutrition totalNutrition = new();
                 totalNutrition.RecipeId = newRecipe.Id;
+                await _context.TotalNutritions.AddAsync(totalNutrition);
+                await _context.SaveChangesAsync();
                 List<IngredientItem> ingredientItems = await _context.IngredientItems
                     .Include(fp => fp.Product)
                     .ToListAsync();
@@ -73,14 +75,16 @@ namespace RecipeSolverAPI.Services.Recipe
                             if (totalProperty != null)
                             {
                                 var currentTotalValue = (decimal)totalProperty.GetValue(totalNutrition)!;
-                                totalProperty.SetValue(totalNutrition, currentTotalValue + (value * quantity));
+                                totalProperty.SetValue(totalNutrition, currentTotalValue + (value * 0.01m * quantity));
                             }
                         }
                     }
                 }
 
-                await _context.TotalNutritions.AddAsync(totalNutrition);
-             
+                _context.TotalNutritions.Update(totalNutrition);
+                await _context.SaveChangesAsync();
+
+
                 newRecipe.TotalNutrition = totalNutrition;
 
 
