@@ -10,7 +10,6 @@
 export default {
   auth: false,
   layout: 'default',
-  // middleware: 'forceReload',
   data() {
     return {};
   },

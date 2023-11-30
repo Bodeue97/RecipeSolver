@@ -17,11 +17,27 @@
   color: rgb(158, 156, 156) !important;
 }
 
-.toolbar-btn {
+.sidebar-menu{
+  background-color: rgba(24, 19, 19, 0.8) !important;
+
+}
+
+.list-item-button {
     
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-    width: 20% !important;
-    background-color: #d38d0097 !important;
+    width: 100% !important;
+    background-color: #c0680497 !important;
     color: rgb(193, 191, 191) !important;
+  }
+  
+  .toolbar-offset {
+    margin-top: -20px !important;
+   
+    transition: margin-right 0.18s ease-out;
+    margin-right: 100px; /* Adjust the value based on your sidebar width */
+  }
+  .toolbar-not-offset {
+    margin-top: -20px !important;
+    
+    transition: margin-right 0.5s ease-out;
+    margin-right: -100px; /* Adjust the value based on your sidebar width */
   }

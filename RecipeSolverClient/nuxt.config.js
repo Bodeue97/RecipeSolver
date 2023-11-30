@@ -96,7 +96,6 @@ export default {
   },
   router: {
     middleware: ['auth'],
-    middleware: ['forceReload']
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -120,32 +119,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-     build: {
-      // ...
-      extend(config, ctx) {
-        if (ctx.isClient) {
-          config.module.rules.push({
-            test: /\.scss$/,
-            use: [
-              'vue-style-loader',
-              'css-loader',
-              {
-                loader: 'sass-loader',
-                options: {
-                  implementation: require('sass'),
-                  sassOptions: {
-                    fiber: require('fibers'),
-                    // Additional options if needed
-                  },
-                },
-              },
-            ],
-          });
-        }
-      },
-    },
+   
   },
 }

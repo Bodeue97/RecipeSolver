@@ -71,27 +71,20 @@ export default {
       }
 
       try {
-        this.$auth
-          .loginWith('local', {
-            data: { email, password },
-          })
-          .then((response) => {
-            // Access the response data here
-            const { user } = response.data
-            
-            this.$auth.$storage.setUniversal('user', user, true);
-            // Handle the user and token data as needed
-            
+        const response = await this.$auth.loginWith('local', {
+          data: { email, password },
+        })
 
-            // Redirect to home page or perform other actions
-            window.location.reload(true);
-          })
-          .catch((error) => {
-            // Handle login errors
-            console.error('Login error:', error)
-          })
+        if (response && response.data) {
+          const user = response.data
 
-        this.$router.push('/')
+          this.$auth.$storage.setUniversal('user', user, true)
+
+          this.$router.push('/')
+        } else {
+          console.error('User data not found in response:', response)
+          throw new Error('User data not found in response')
+        }
       } catch (error) {
         console.error('Error logging in:', error)
 
