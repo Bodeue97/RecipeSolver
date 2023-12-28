@@ -1,7 +1,6 @@
 <template>
-  <!-- Add any content you want to display on the root page -->
   <div>
-    <!-- Example: -->
+   
     <h1>Welcome to the Home Page!</h1>
   </div>
 </template>

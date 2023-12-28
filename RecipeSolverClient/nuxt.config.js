@@ -1,4 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
+import https from 'https'; // Import HTTPS module
+
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -40,6 +42,7 @@ export default {
   plugins: [
     '~/plugins/validation.js',
     '@/plugins/vuetify',
+    '@/plugins/axios',
 
   ],
   render: {
@@ -91,9 +94,11 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://localhost:5041',
+    baseURL: process.env.API_BASE_URL || 'http://localhost:5041',
+    httpsAgent: process.env.NODE_ENV === 'development' ? new https.Agent({ rejectUnauthorized: false }) : undefined,
   },
+  
+  
   router: {
     middleware: ['auth'],
   },

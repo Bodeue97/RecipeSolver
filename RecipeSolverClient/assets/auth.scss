@@ -44,6 +44,36 @@ button:hover {
   background-color: #b16603;
 }
 
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.content-container {
+  max-width: 30%; 
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(24, 19, 19, 0.6);
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust loader height as needed */
+}
+
+.centered-content {
+  size: 90%;
+  text-align: center;
+  color: #ccc;
+}
+
+
+
 /* Media queries for different device sizes */
 
 /* For tablets */

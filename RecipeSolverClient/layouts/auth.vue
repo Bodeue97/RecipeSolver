@@ -4,7 +4,7 @@
       
      
       <nuxt />
-   >
+   
     </v-container>
   </template>
   

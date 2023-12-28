@@ -18,7 +18,7 @@ namespace RecipeSolverAPI.Services.Recipe
         {
             try
             { 
-                // tworze szkielet przepisu bez 
+               
                 Data.DataModels.Recipe newRecipe = new()
                 {
                     Title = request.Title,

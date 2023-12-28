@@ -74,6 +74,9 @@ builder.Services.AddCors(options => options.AddPolicy(name: "All",
 
 var app = builder.Build();
 
+DbInitializer.Seed(app);
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
