@@ -1,10 +1,15 @@
 <template>
-  <h1>Index page</h1>
+  <!-- Add any content you want to display on the root page -->
+  <div>
+    <!-- Example: -->
+    <h1>Welcome to the Home Page!</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  layout: 'default', // Associate this page with the 'default' layout
+  auth: false,
+  layout: 'default',
   data() {
     return {};
   },

@@ -1,8 +1,10 @@
 <template>
     
     <v-container>
-      <h1>Auth layout</h1>
+      
+     
       <nuxt />
+   >
     </v-container>
   </template>
   

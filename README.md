@@ -5,10 +5,8 @@ TO DO:
 1. później trzeba będzie zrobić DbInitializer żeby populować bazę produktami spożywczymi z książki (robota na koniec/pod koniec).
 
 *FRONT:
-1. stworzyć szkielet, layouty do widoków
-2. stworzyć widoki do:
--logowanie/rejestracja(osobny layout prawdopodobnie)
--widok główny(popularne przepisy, odnośniki do rodzajów przepisów np sniadanie, obiad itd., dodaj przepis)
+1. stworzyć widoki do:
+-widok główny(popularne przepisy, odnośniki do rodzajów przepisów np sniadanie, obiad itd.)
 -widok tworzenia przepisu (tytuł, czas przygotowania, kategoria, danie na zimno, wielkość porcji, zdjęcie, opis, składniki)
 -widok wyświetlania przepisu z możliwością modyfikowania wielkości (ilość osób)
 -widok spiżarni, wyświetla produkty przypisane do uzytkownika 

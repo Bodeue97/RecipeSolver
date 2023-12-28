@@ -1,0 +1,43 @@
+/* All styles here must use !important */
+
+.overhead-bar {
+    background-color: rgba(24, 19, 19, 0.9) !important;
+    
+ }
+.no-user-bar{
+  width: 100% !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+.user-info{
+  width: 100% !important;
+
+}
+.overhead-title {
+  color: rgb(158, 156, 156) !important;
+}
+
+.sidebar-menu{
+  background-color: rgba(24, 19, 19, 0.8) !important;
+
+}
+
+.list-item-button {
+    
+    width: 100% !important;
+    background-color: #c0680497 !important;
+    color: rgb(193, 191, 191) !important;
+  }
+  
+  .toolbar-offset {
+    margin-top: -20px !important;
+   
+    transition: margin-right 0.18s ease-out;
+    margin-right: 100px; /* Adjust the value based on your sidebar width */
+  }
+  .toolbar-not-offset {
+    margin-top: -20px !important;
+    
+    transition: margin-right 0.5s ease-out;
+    margin-right: -100px; /* Adjust the value based on your sidebar width */
+  }

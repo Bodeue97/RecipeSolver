@@ -58,6 +58,7 @@
     components: {
       ValidationErrorMessage,
     },
+    auth: false,
     layout: 'auth',
     data() {
       return {
