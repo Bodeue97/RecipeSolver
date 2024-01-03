@@ -1,26 +1,65 @@
+
 .recipe-form {
-  .input-row {
-    display: flex;
-    gap: 20px; /* Adjust the gap between the inputs */
+  margin-left: 250px;
+  width: 60%;
+  text-align: center;
+  height: 400px;
+  background-color: rgba(24, 19, 19, 0.6);
+
+  label {
+    text-align: center;
+    color: silver;
   }
 
-  .input-col {
-    flex: 1; /* Ensure equal width for both columns */
-  }
-
+  input[type="text"],
+  input[type="number"],
   select {
-    border: 1px solid #ccc; /* Gray border */
-    padding: 8px; /* Adjust padding as needed */
-    width: 100%; /* Ensure full width */
-    box-sizing: border-box; /* Include padding and border in width */
-    border-radius: 4px; /* Optional: Add border radius */
+    width: 150px;
+    padding-left: 5px !important;
+    border-radius: 10px !important;
+    height: 40px !important;
+    color: silver;
+    background-color: #d38d0097;
+    border: 1px solid silver;
   }
-}
-.v-form {
-  background-color: rgba(24, 19, 19, 0.6); /* 50% opaque background */
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+  select option {
+    background-color: rgba(183, 124, 4, 0.612);
+    color: silver;
+  }
+
+  button[type="submit"] {
+    width: 120px;
+    border-radius: 3px !important;
+    color: white;
+    background-color: #d38d0097;
+    height: 40px;
+    margin-top: 20px;
+  }
+  .remove-button{
+    width: 25px;
+    text-align: center;
+    border-radius: 10px !important;
+    color: white;
+    background-color: #d38d0097;
+    height: 25px;
+   
+  }
+  button{
+   
+    width: 120px;
+    border-radius: 10px !important;
+    color: white;
+    background-color: #d38d0097;
+    height: 40px;
+    margin-top: 20px;
+  }
+  ul{
+    color: silver;
+    list-style: none;
+
+  }
+  li {
+    color: silver;
+  }
 }

@@ -1,24 +1,15 @@
 <template>
   <div>
     <h1>Stwórz przepis</h1>
-    <div class="recipe-form">
-      <v-form @submit.prevent="submitRecipe">
-        <label>Tytuł</label>
-        <input
-          id="title"
-          v-model="recipe.title"
-          type="text"
-          placeholder="Wpisz tytuł przepisu"
-        />
+    <div>
+      <v-form class="recipe-form" @submit.prevent="submitRecipe">
+        <label>Tytuł: </label>
+        <input id="title" v-model="recipe.title" type="text" placeholder="Wpisz tytuł przepisu" />
         <div class="input-row">
           <div class="input-col">
             <label>Czas przygotowania</label>
-            <input
-              id="preparationTime"
-              v-model.number="recipe.preparationTime"
-              type="number"
-              placeholder="Wpisz czas w minutach"
-            />
+            <input id="preparationTime" v-model.number="recipe.preparationTime" type="number"
+              placeholder="Wpisz czas w minutach" />
           </div>
           <div class="input-col">
             <label>Kategoria</label>
@@ -30,17 +21,45 @@
               <option value="przekąska">Przekąska</option>
             </select>
           </div>
+          <div>
+            <label>Wybierz składnik:</label>
+            <select v-model="selectedIngredient">
+              <option v-for="product in foodProducts" :key="product.id" :value="product.id">
+                {{ product.name }}({{ product.unit }})
+              </option>
+            </select>
+            <label>Ilość:</label>
+            <input v-model.decimal="selectedQuantity" type="number" />
+
+            <button @click="addIngredient">Dodaj składnik</button>
+
+
+            <ul>
+              Składniki:
+              <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
+                {{ foodProducts.find(p => p.id === ingredient.productId).name }} - {{ ingredient.quantity }}
+                <button class="remove-button" @click="removeIngredient(index)">X</button>
+              </li>
+            </ul>
+          </div>
         </div>
         <button type="submit">Dodaj przepis</button>
+        <ValidationErrorMessage :validationMessage="validationMessage" :showPopup="showPopup" />
       </v-form>
     </div>
+
   </div>
 </template>
   
-  <script>
+<script>
+import ValidationErrorMessage from '~/components/ValidationErrorMessage.vue'
+
 export default {
   auth: false,
   layout: 'default',
+  components: {
+    ValidationErrorMessage,
+  },
   data() {
     return {
       recipe: {
@@ -55,6 +74,8 @@ export default {
       foodProducts: [],
       selectedIngredient: null,
       selectedQuantity: 0,
+      validationMessage: '',
+      showPopup: false,
     }
   },
   head() {
@@ -68,20 +89,28 @@ export default {
       try {
         const response = await this.$axios.get('/api/FoodProduct/GetAll')
         this.foodProducts = response.data
-        console.log(this.foodProducts)
       } catch (error) {
-        console.error('Error fetching food products:', error)
       }
     },
     addIngredient() {
-      if (this.selectedIngredient && this.selectedQuantity) {
-        this.recipe.ingredients.push({
-          productId: this.selectedIngredient,
-          quantity: this.selectedQuantity,
-        })
-        this.selectedIngredient = null
-        this.selectedQuantity = 0
+      if (this.selectedIngredient && this.selectedQuantity > 0) {
+        const exists = this.recipe.ingredients.some(
+          (ingredient) => ingredient.productId === this.selectedIngredient
+        );
+
+        if (!exists) {
+          this.recipe.ingredients.push({
+            productId: this.selectedIngredient,
+            quantity: this.selectedQuantity,
+          });
+        }
+
+        this.selectedIngredient = null;
+        this.selectedQuantity = 0;
       }
+    },
+    removeIngredient(index) {
+      this.recipe.ingredients.splice(index, 1);
     },
     async submitRecipe() {
       try {
@@ -89,10 +118,16 @@ export default {
           '/api/Recipe/Create',
           this.recipe
         )
-        console.log('Recipe created:', response.data)
       } catch (error) {
-        console.error('Error creating recipe:', error)
-      }
+        this.validationMessage = error.message || 'Nie dodano przepisu'
+        this.showPopup = true
+        this.hideErrorMessageAfterDelay()      }
+    },
+    hideErrorMessageAfterDelay() {
+      setTimeout(() => {
+        this.validationMessage = ''
+        this.showPopup = false
+      }, 2000)
     },
   },
   async created() {

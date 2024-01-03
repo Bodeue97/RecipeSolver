@@ -66,14 +66,15 @@ namespace RecipeSolverAPI.Services.PantryItem
             }
         }
 
-        public async Task<PantryItemDto> Get(int id)
+        public async Task<List<PantryItemDto>> Get(int id)
         {
             try
             {
-                var pantryItem = await _context.PantryItems.FirstOrDefaultAsync(i => i.Id == id) ??
+                var pantryItem = await _context.PantryItems.Where(i => i.Id == id)
+                    .Include(i => i.Product).ToListAsync() ??
                     throw new Exception("Pantry item not found");
 
-                return _mapper.Map<PantryItemDto>(pantryItem);
+                return _mapper.Map<List<PantryItemDto>>(pantryItem);
 
             }
             catch (Exception error)
@@ -82,16 +83,23 @@ namespace RecipeSolverAPI.Services.PantryItem
             }
         }
 
-        public async Task<List<PantryItemDto>> GetUsersItems(int userId)
+        public async Task<List<PantryItemDto>> GetUsersItems(int userId, string token)
         {
             try
             {
+                if (await _context.Users.FirstOrDefaultAsync(u => u.Id == userId && u.Token == token) != null) { 
                 var pantryItems = await _context.PantryItems
                     .Where(item => item.UserId == userId)
                     .Include(item => item.Product)
                     .ToListAsync();
 
+
                 return _mapper.Map<List<PantryItemDto>>(pantryItems);
+            }else
+            {
+                    throw new Exception("Podany token nie pasuej do aktualnego użytkownika");
+            }
+        
 
             }
             catch (Exception error)
@@ -100,14 +108,14 @@ namespace RecipeSolverAPI.Services.PantryItem
             }
         }
 
-        public async Task<PantryItemDto> Update(int id, decimal quantity)
+        public async Task<PantryItemDto> Update(int id, PantryItemUpdateRequest quantity)
         {
             try
             {
                 var pantryItem = await _context.PantryItems.FirstOrDefaultAsync(i => i.Id == id) ??
                     throw new Exception("Pantry item not found");
 
-                pantryItem.Quantity = quantity;
+                pantryItem.Quantity = (decimal)quantity.Quantity!;
                 _context.PantryItems.Update(pantryItem);
                 await _context.SaveChangesAsync();
                 return _mapper.Map<PantryItemDto>(pantryItem);

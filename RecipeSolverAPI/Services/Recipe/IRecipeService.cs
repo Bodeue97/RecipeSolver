@@ -8,7 +8,8 @@ namespace RecipeSolverAPI.Services.Recipe
         public Task<RecipeDto> Create (RecipeRequest request);
         public Task<RecipeDto> Get(int id);
         public Task<List<RecipeDto>> GetAll();
-        public Task<decimal> RateRecipe(int id, RecipeRatingRequest request);   
+        public Task<decimal> RateRecipe(int id, RecipeRatingRequest request);
+        public Task<int> Delete(int id);
 
     }
 }

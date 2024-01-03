@@ -185,5 +185,22 @@ namespace RecipeSolverAPI.Services.Recipe
             }
         }
 
+        public async Task<int> Delete(int id)
+        {
+            try
+            {
+                var recipeToRemove = await _context.Recipes.FirstOrDefaultAsync(i => i.Id == id) ?? throw new Exception("Nie znaleziono przepisu");
+                var totalNutritionToRemove = await _context.TotalNutritions.FirstOrDefaultAsync(i => i.RecipeId == id) ?? throw new Exception("Nie znaleziono wartości odżywczych");
+                _context.TotalNutritions.Remove(totalNutritionToRemove);
+                _context.Recipes.Remove(recipeToRemove);
+                _context.SaveChanges();
+                return id;
+            }
+            catch (Exception error)
+            {
+                throw new Exception(error.Message);
+            }
+        }
+
     }
 }

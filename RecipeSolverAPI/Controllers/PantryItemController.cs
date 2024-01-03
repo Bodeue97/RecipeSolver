@@ -31,7 +31,7 @@ namespace RecipeSolverAPI.Controllers
         }
 
         [HttpPatch("Update/{id}")]
-        public async Task<ActionResult<PantryItemDto>> Update(int id, decimal quantity)
+        public async Task<ActionResult<PantryItemDto>> Update(int id, PantryItemUpdateRequest quantity)
         {
             try
             {                
@@ -56,12 +56,12 @@ namespace RecipeSolverAPI.Controllers
             }
         }
 
-        [HttpGet("GetUsersItems/{userId}")]
-        public async Task<ActionResult<List<PantryItemDto>>> GetUsersItems(int userId)
+        [HttpGet("GetUsersItems/{userId}/{token}")]
+        public async Task<ActionResult<List<PantryItemDto>>> GetUsersItems(int userId, string token)
         {
             try
             {
-                return Ok(await _pis.GetUsersItems(userId));
+                return Ok(await _pis.GetUsersItems(userId, token));
             }
             catch (Exception ex)
             {

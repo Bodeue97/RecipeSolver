@@ -39,7 +39,7 @@
     color: white;
     padding: 15px 25px; /* Adjust padding for size */
     border-radius: 5px;
-    z-index: 999; /* Ensure it appears above other content */
+    z-index: 99999; /* Ensure it appears above other content */
     font-size: 20px; /* Increase font size */
     transform: scale(1.2); /* Make it 20% larger */
   }

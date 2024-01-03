@@ -66,6 +66,18 @@ namespace RecipeSolverAPI.Controllers
             }
 
         }
+        [HttpDelete("Delete/{id}")]
+        public async Task<ActionResult<int>> Delete(int id)
+        {
+            try
+            {
+                return Ok(await _rs.Delete(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

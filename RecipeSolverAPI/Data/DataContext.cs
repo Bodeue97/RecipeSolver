@@ -38,5 +38,8 @@
             public DbSet<RecipeRating> RecipeRating => Set<RecipeRating>();
             public DbSet<TotalNutrition> TotalNutritions => Set<TotalNutrition>();
 
-        }
+
+       
+
+    }
     }

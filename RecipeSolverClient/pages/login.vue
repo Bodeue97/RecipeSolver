@@ -14,7 +14,6 @@
 
       <button type="submit">Zaloguj się</button>
 
-      <!-- Include ValidationErrorMessage component to display validation errors -->
       <ValidationErrorMessage
         :validationMessage="validationMessage"
         :showPopup="showPopup"
@@ -88,7 +87,6 @@ export default {
       } catch (error) {
         console.error('Error logging in:', error)
 
-        // Display error message in the popup
         this.validationMessage = error.message || 'Błąd logowania'
         this.showPopup = true
         this.hideErrorMessageAfterDelay()

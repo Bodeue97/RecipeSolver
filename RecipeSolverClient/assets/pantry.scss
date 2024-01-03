@@ -1,0 +1,104 @@
+h1 {
+  color: rgb(143, 143, 143) !important;
+}
+
+.v-data-table {
+  text-align: center !important;
+  margin-left: 100px !important;
+  width: 80% !important;
+  background-color: rgba(154, 109, 42, 0.734) !important;
+}
+
+.v-data-table-header th {
+  text-align: left !important;
+  padding: 10px !important; 
+  color: black !important;
+}
+
+.v-data-table-row td {
+  text-align: center !important; /* Center the text */
+  color: black !important;
+}
+.v-data-table.v-data-table--dense tbody tr td,
+.v-data-table.v-data-table--dense tbody tr:nth-child(even) td {
+  text-align: center !important; /* Center the text */
+}
+.centered-cells .v-data-table-body td {
+  text-align: center !important;
+}
+
+.pantry-create-button {
+  background-color: rgba(142, 142, 142, 0.621) !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+.pantry-form {
+  text-align: center;
+  height: 40px !important;
+  display: flex, center;
+  flex-direction: row;
+  gap: 20px; 
+  width: 80% !important;
+  background-color: rgba(24, 19, 19, 0.6);
+
+  label {
+   
+    text-align: center;
+    color: silver;
+  }
+
+  select {
+    width: 150px;
+   padding-left: 5px!important;
+    border-radius: 10px!important;
+    height : 40px !important;
+    color: silver;
+    background-color:  #d38d0097; 
+    border: 1px solid silver;
+   
+  }
+  select option{
+    background-color: rgba(183, 124, 4, 0.612); 
+  color: silver;
+  }
+
+  select option:hover {
+    background-color: black!important;
+    color: white !important; 
+  }
+
+  input[type="number"],
+  button[type="submit"] {
+    width: 80px;
+    border-radius: 3px!important;
+    color: white;
+    background-color:  #d38d0097;
+  }
+}
+
+.pantry-edit{
+    margin-left: 350px; 
+  width: 40%;
+  gap: 5px;
+  display: center;
+  text-align: center;
+  background-color: rgba(24, 19, 19, 0.6);
+
+  label {
+   
+    text-align: center;
+    color: silver;
+  }
+
+  input[type="number"],
+  button[type="submit"] {
+    
+    width: 160px;
+    border-radius: 3px!important;
+    color: white;
+    background-color:  #d38d0097;
+  }
+  .product-span{
+    color: #d38d0097;
+  }
+}

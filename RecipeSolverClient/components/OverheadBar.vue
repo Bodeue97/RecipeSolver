@@ -12,10 +12,10 @@
       <v-list v-if="user && isLoggedIn">
         <v-list-item> Witaj {{ user.name }} </v-list-item>
         <v-list-item>
-          <v-btn to="/pantry">Spiżarnia</v-btn>
+          <v-btn to="/pantry/items">Spiżarnia</v-btn>
         </v-list-item>
         <v-list-item>
-          <v-btn to="/my-recipes">Moje przepisy</v-btn>
+          <v-btn to="/recipe/create">Moje przepisy</v-btn>
         </v-list-item>
         <v-list-item>
           <v-btn to="/recipe/create"
