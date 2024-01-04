@@ -25,6 +25,7 @@ namespace RecipeSolverAPI.Data.DataModels
         public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
         public List<PantryItem> PantryItems { get; set; } = new List<PantryItem>();
+        public List<Recipe> Recipes { get; set; } = new List<Recipe>();
 
 
     }

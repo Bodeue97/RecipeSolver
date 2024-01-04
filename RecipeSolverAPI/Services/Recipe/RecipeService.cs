@@ -2,6 +2,7 @@
 using RecipeSolverAPI.Data.DataModels;
 using RecipeSolverAPI.Models.Recipe;
 
+
 namespace RecipeSolverAPI.Services.Recipe
 {
     public class RecipeService : IRecipeService
@@ -17,8 +18,10 @@ namespace RecipeSolverAPI.Services.Recipe
         public async Task<RecipeDto> Create(RecipeRequest request)
         {
             try
-            { 
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(i => i.Id == request.UserId) ?? throw new Exception("Nie znaleziono użytkownika");
                
+
                 Data.DataModels.Recipe newRecipe = new()
                 {
                     Title = request.Title,
@@ -27,6 +30,11 @@ namespace RecipeSolverAPI.Services.Recipe
                     ColdDish = request.ColdDish,
                     Portions = request.Portions,
                     Description = request.Description,
+                    Photo = request.Photo,
+                    User = user,
+                    UserId = request.UserId,
+
+                    
 
                 };
                 // dodaje przepis do kontekstu i zapisuje do bazy
@@ -110,7 +118,7 @@ namespace RecipeSolverAPI.Services.Recipe
                     .Include(i => i.Ingredients)
                     .ThenInclude(i => i.Product)
                     .FirstOrDefaultAsync(i => i.Id == id)
-                    ?? throw new Exception("Recipe not found");
+                    ?? throw new Exception("Nie znaleziono przepisu");
 
                 return _mapper.Map<RecipeDto>(recipe);
             }
@@ -201,6 +209,26 @@ namespace RecipeSolverAPI.Services.Recipe
                 throw new Exception(error.Message);
             }
         }
+        public async Task<List<RecipeDto>> GetUsersRecipes(int userId)
+        {
+            try
+            {
+                List<Data.DataModels.Recipe> usersRecipes = await _context.Recipes.Where(i => i.UserId == userId).Include(i => i.TotalNutrition)
+                    .Include(r => r.Ratings)
+                    .Include(i => i.Ingredients)
+                    .ThenInclude(i => i.Product)
+                    .ToListAsync()
+                    ?? throw new Exception("Błąd przy wyszukiwaniu przepisów użytkownika");
+
+                return _mapper.Map<List<RecipeDto>>(usersRecipes);
+            }
+            catch (Exception error)
+            {
+                throw new Exception(error.Message);
+            }
+        }
+
+
 
     }
 }

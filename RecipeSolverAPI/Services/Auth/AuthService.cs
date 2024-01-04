@@ -119,7 +119,7 @@ namespace RecipeSolverAPI.Services.Auth
                     Name = user.Name!,
                     Surname = user.Surname!,
                     Email = request.Email,
-                    Token = tokens.Token,
+                    Token = user.Token,
                     RefreshToken = tokens.RefreshToken,
                     VerificationToken = user.VerificationToken!,
 

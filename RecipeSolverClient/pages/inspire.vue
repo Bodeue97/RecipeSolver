@@ -19,3 +19,7 @@ export default {
   name: 'InspirePage',
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

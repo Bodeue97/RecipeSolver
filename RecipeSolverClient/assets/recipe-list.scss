@@ -1,0 +1,19 @@
+.recipe-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .recipe-tile {
+    width: 30%; /* Adjust the width as needed */
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .recipe-tile img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }

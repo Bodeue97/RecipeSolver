@@ -10,6 +10,8 @@ namespace RecipeSolverAPI.Services.Recipe
         public Task<List<RecipeDto>> GetAll();
         public Task<decimal> RateRecipe(int id, RecipeRatingRequest request);
         public Task<int> Delete(int id);
+        public Task<List<RecipeDto>> GetUsersRecipes(int userId);
+
 
     }
 }

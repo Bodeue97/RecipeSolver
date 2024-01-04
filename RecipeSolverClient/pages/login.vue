@@ -73,7 +73,6 @@ export default {
         const response = await this.$auth.loginWith('local', {
           data: { email, password },
         })
-
         if (response && response.data) {
           const user = response.data
 

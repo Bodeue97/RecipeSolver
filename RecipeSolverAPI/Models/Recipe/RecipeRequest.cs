@@ -13,9 +13,8 @@ namespace RecipeSolverAPI.Models.Recipe
         public int Portions { get; set; } = 1;
         public string Description { get; set; } = string.Empty;
         public List<IngredientItemRequest> Ingredients { get; set; } = new List<IngredientItemRequest>();
-
-       // public decimal OverallRating { get; set; }
-
-       // public byte[] Photo { get; set; } = Array.Empty<byte>();
+        public string Photo  { get; set; } = string.Empty;
+        public int UserId { get; set; }
+        
     }
 }

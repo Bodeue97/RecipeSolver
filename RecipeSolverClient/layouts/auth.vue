@@ -19,3 +19,7 @@
     methods: {}
   };
   </script>
+
+
+<styles lang="scss" scoped>
+</styles>

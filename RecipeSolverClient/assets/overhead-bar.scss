@@ -6,10 +6,9 @@
   height: 60px !important;
   min-height: 60px !important;
   line-height: 60px !important;
-  position: relative!important; 
+  position: relative !important; 
   z-index: 1000 !important;
- 
- 
+  transition: margin-right 0.25s ease, transform 0.25s ease; 
 }
 .sticky-header {
   position: fixed !important;
@@ -17,8 +16,8 @@
   width: 100%!important;
 }
 .content-wrapper {
-  /* Add padding-top to compensate for the header space */
-  padding-top: 60px!important; /* Adjust height if needed */
+
+  padding-top: 60px!important; 
 }
 .v-btn {
   color: rgb(193, 191, 191) !important;
@@ -28,8 +27,19 @@
 
 
 .v-application .v-app-bar.overhead-bar.retracted {
-  margin-right: 260px !important; /* Adjust this value to retract the right side */
-  transform: translateX(0)!important;
+  margin-right: 260px !important; 
+  transform: translateX(0) !important;
+  transition: margin-right 0.25s ease, transform 0.25s ease;
 }
 
+.logo-btn{
+  background-color:rgba(255, 255, 255, 0) !important;
+}
+.nav-drawer-btn{
+  width: 100%;
+}
+
+.v-navigation-drawer{
+  background-color: rgba(21, 21, 21, 0.593)!important;
+}
 

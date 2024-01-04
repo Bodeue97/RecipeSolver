@@ -38,8 +38,17 @@
             public DbSet<RecipeRating> RecipeRating => Set<RecipeRating>();
             public DbSet<TotalNutrition> TotalNutritions => Set<TotalNutrition>();
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Recipes) // A user has many recipes
+                .WithOne(r => r.User)    // A recipe belongs to one user
+                .HasForeignKey(r => r.UserId); // Define the foreign key
 
-       
+
+            base.OnModelCreating(modelBuilder);
+        }
+
 
     }
     }
