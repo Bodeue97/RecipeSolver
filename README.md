@@ -2,13 +2,14 @@
 
 TO DO:
 *API:
-1. Stworzyć metody do aplikowania filtrów wyszukiwania.
-2. później trzeba będzie zrobić DbInitializer żeby populować bazę produktami spożywczymi z książki (robota na koniec/pod koniec).
+1. Poprawić rating przepisu z int na decimal
+2. Stworzyć metody do aplikowania filtrów wyszukiwania.
+3. później trzeba będzie zrobić DbInitializer żeby populować bazę produktami spożywczymi z książki (robota na koniec/pod koniec).
 
 *FRONT:
 Zadania na teraz: 
-1. Dopracować wyświetlanie kafelków z przepisami, zaaplikować do strony głównej.
-2. Zrobić widok wyświetlania detali przepisu.
+1. Dopracować widok przepisu, dodać zmienianie ilości skladnikow/wartosci odzywczych na podstawie ilosci porcji
+2. wrzucić kafelki z przepisami na stronę główną
 <---->
 stworzyć widoki do:
 -widok główny(popularne przepisy, odnośniki do rodzajów przepisów np sniadanie, obiad itd.)
