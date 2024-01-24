@@ -13,7 +13,7 @@
         <span class="mr-2">Rejestracja</span>
         <v-icon>mdi-account-plus</v-icon>
       </v-btn>
-    </v-list-item>
+    </v-list-item> 
   </v-list>
   <v-list v-if="user && isLoggedIn">
     <v-list-item> Witaj {{ user.name }} </v-list-item>
@@ -24,7 +24,7 @@
       </v-btn>
     </v-list-item>
     <v-list-item>
-      <v-btn to="/recipe/items" class="nav-drawer-btn">
+      <v-btn to="/recipe/my-items" class="nav-drawer-btn">
         <span class="mr-2">Moje przepisy</span>
         <v-icon>mdi-notebook</v-icon>
       </v-btn>
@@ -54,6 +54,12 @@
       <v-btn class="logo-btn" @click="goHome">
           <h1 class="logo">Recipe Solver</h1>
         </v-btn>
+        
+        <v-btn>Śniadania</v-btn>
+        <v-btn>Obiady</v-btn>
+        <v-btn>Kolacje</v-btn>
+        <v-btn>Desery</v-btn>
+        <v-btn to="/recipe/items">Przeglądaj</v-btn>
       <v-spacer></v-spacer>
       <v-btn @click="toggleDrawer" text>
         Menu

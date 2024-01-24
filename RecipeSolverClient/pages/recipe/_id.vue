@@ -106,14 +106,12 @@ export default {
         async rateRecipe(rating) {
             this.userRating = rating;
 
-            // Round the rating to the nearest .5 to emulate half stars
             const roundedRating = Math.round(rating * 2) / 2;
 
-            // Loop through stars and update classes
             for (let i = 1; i <= 5; i++) {
                 const starElement = document.getElementById(`star${i}`);
                 if (starElement) {
-                    const starValue = i / 2; // Get the value of the star (0.5, 1.0, 1.5, etc.)
+                    const starValue = i / 2; 
                     starElement.classList.toggle('star-filled', starValue <= roundedRating);
                 }
             }

@@ -175,7 +175,7 @@ export default {
         this.validationMessage = 'Przepis został dodany.';
         this.showPopup = true;
         this.hideErrorMessageAfterDelay();
-        this.$router.push("/recipe/items")
+        this.$router.push("/recipe/my-items")
 
       } catch (error) {
         this.validationMessage = error.message || 'Nie dodano przepisu';

@@ -1,9 +1,22 @@
+h1{
+ text-align: center;
+ margin-bottom: 40px;
+ color: rgb(193, 191, 191);
+}
+hr{
+  color: rgb(193, 191, 191)!important;
+  margin-bottom: 40px;
+  width: 60%;
+  display: center;
+  margin-left:300px;
+}
 .recipe-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   width: 80%;
   margin-left: 150px;
+
 }
 
 .recipe-tile {
@@ -12,14 +25,20 @@
   text-align: center;
   position: relative;
   overflow: hidden; 
+  border-radius: 20px;
+
 }
 
 .recipe-image-container {
+  max-width: 300px;
+  max-height: 150px;
   position: relative;
+  border-radius: 20px;
 }
 
 .recipe-image {
   width: 100%;
+  height: 100%;
   height: auto;
   display: block; 
   object-fit: cover;
@@ -59,4 +78,11 @@
 .recipe-link {
   text-decoration: none;
   color: inherit;
+  
+}
+.v-btn {
+  color: rgb(193, 191, 191) !important;
+  background-color: #d38d0097 !important;
+  margin-left: 170px;
+  margin-bottom: 50px;
 }
