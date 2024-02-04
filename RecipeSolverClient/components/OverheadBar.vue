@@ -1,32 +1,49 @@
 <template>
   <v-app style="background-color: rgba(255, 255, 255, 0)">
     <v-navigation-drawer v-model="drawer" app right>
-      <v-list v-if="!user || !isLoggedIn">
-        <v-list-item>
-          <v-btn to="/login">Zaloguj się</v-btn>
-        </v-list-item>
-        <v-list-item>
-          <v-btn to="/register">Rejestracja</v-btn>
-        </v-list-item>
-      </v-list>
-      <v-list v-if="user && isLoggedIn">
-        <v-list-item> Witaj {{ user.name }} </v-list-item>
-        <v-list-item>
-          <v-btn to="/pantry/items">Spiżarnia</v-btn>
-        </v-list-item>
-        <v-list-item>
-          <v-btn to="/recipe/create">Moje przepisy</v-btn>
-        </v-list-item>
-        <v-list-item>
-          <v-btn to="/recipe/create"
-            ><v-icon>mdi-plus-circle</v-icon>Stwórz przepis</v-btn
-          >
-        </v-list-item>
-        <v-list-item>
-          <v-btn @click="logout"><v-icon>mdi-logout</v-icon>Wyloguj</v-btn>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+  <v-list v-if="!user || !isLoggedIn">
+    <v-list-item>
+      <v-btn to="/login" class="nav-drawer-btn">
+        <span class="mr-2">Zaloguj się</span>
+        <v-icon>mdi-login</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-list-item>
+      <v-btn to="/register" class="nav-drawer-btn">
+        <span class="mr-2">Rejestracja</span>
+        <v-icon>mdi-account-plus</v-icon>
+      </v-btn>
+    </v-list-item> 
+  </v-list>
+  <v-list v-if="user && isLoggedIn">
+    <v-list-item> Witaj {{ user.name }} </v-list-item>
+    <v-list-item>
+      <v-btn to="/pantry/items" class="nav-drawer-btn">
+        <span class="mr-2">Spiżarnia</span>
+        <v-icon>mdi-food-variant</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-list-item>
+      <v-btn to="/recipe/my-items" class="nav-drawer-btn">
+        <span class="mr-2">Moje przepisy</span>
+        <v-icon>mdi-notebook</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-list-item>
+      <v-btn to="/recipe/create" class="nav-drawer-btn">
+        <span class="mr-2">Stwórz przepis</span>
+        <v-icon>mdi-plus-circle</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-list-item>
+      <v-btn @click="logout" class="nav-drawer-btn">
+        <span class="mr-2">Wyloguj</span>
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
+    </v-list-item>
+  </v-list>
+</v-navigation-drawer>
+
 
     <div class="bar-wrapper">
     <v-app-bar
@@ -34,6 +51,15 @@
       :class="{ 'retracted': drawer , 'sticky-header': isHeaderSticky }"
       class="overhead-bar"
       >
+      <v-btn class="logo-btn" @click="goHome">
+          <h1 class="logo">Recipe Solver</h1>
+        </v-btn>
+        
+        <v-btn>Śniadania</v-btn>
+        <v-btn>Obiady</v-btn>
+        <v-btn>Kolacje</v-btn>
+        <v-btn>Desery</v-btn>
+        <v-btn to="/recipe/items">Przeglądaj</v-btn>
       <v-spacer></v-spacer>
       <v-btn @click="toggleDrawer" text>
         Menu
@@ -74,6 +100,9 @@ export default {
     });
   },
   methods: {
+    goHome(){
+      this.$router.push("/");
+    },
     handleScroll() {
       // Set a scroll threshold to change header behavior
       const scrollThreshold = 100; // Adjust as needed

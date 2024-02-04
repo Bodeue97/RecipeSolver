@@ -9,8 +9,10 @@
         </option>
       </select>
       
-      <label for="quantityInput">Ilość (g):</label>
-      <input v-model.decimal="quantity" type="number" id="quantityInput">
+      <label :for="quantityInputId">
+        Ilość ({{ selectedProductUnit }}):
+      </label>
+      <input v-model.decimal="quantity" type="number" :id="quantityInputId">
 
       <button type="submit">Dodaj</button>
     </form>
@@ -35,7 +37,8 @@ export default {
       foodProducts: [],
       selectedFoodProductId: null,
       quantity: 0,
-
+      quantityInputId: 'quantityInput', 
+      selectedProductUnit: '', 
 
     }
   },
@@ -44,9 +47,19 @@ export default {
       title: 'Spiżarnia',
     }
   },
+  
   computed: {
-    
+    selectedProduct() {
+      return this.foodProducts.find(product => product.id === this.selectedFoodProductId);
+    },
   },
+
+  watch: {
+    selectedFoodProductId(newValue, oldValue) {
+      this.selectedProductUnit = this.selectedProduct ? this.selectedProduct.unit : '';
+    },
+  },
+  
   methods: {
     async getFoodProducts() {
       try {

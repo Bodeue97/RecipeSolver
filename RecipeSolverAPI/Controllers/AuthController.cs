@@ -154,5 +154,30 @@ namespace RecipeSolverAPI.Controllers
             }
         }
 
+        [HttpGet("GetAll")]
+        public async Task<ActionResult<UserDto>> GetAll()
+        {
+            try
+            {
+                return Ok(await _authService.GetAll());
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error.Message);
+            }
+        }
+        [HttpDelete("Delete/{id}")]
+        public async Task<ActionResult<int>> Delete(int id)
+        {
+            try
+            {
+                return Ok(await _authService.Delete(id));
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error.Message);
+            }
+        }
+
     }
 }

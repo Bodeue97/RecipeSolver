@@ -79,5 +79,21 @@ namespace RecipeSolverAPI.Controllers
             }
         }
 
+        [HttpGet("GetUsersRecipes/{userId}")]
+        public async Task<ActionResult<List<RecipeDto>>> GetUsersRecipes(int userId)
+        {
+            try
+            {
+                return Ok(await _rs.GetUsersRecipes(userId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+
+
     }
 }

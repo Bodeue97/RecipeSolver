@@ -47,10 +47,8 @@ export default {
             const response = await this.$axios.get(`/api/PantryItem/Get/${id}`);
 
             this.pantryItem = response.data[0];
-            console.log(this.pantryItem)
             this.newQuantity = this.pantryItem.quantity;
         } catch (error) {
-            console.error('Error fetching pantry item:', error);
             this.validationMessage = 'Error fetching pantry item';
             this.showPopup = true;
             this.hideErrorMessageAfterDelay();
@@ -77,7 +75,6 @@ export default {
 
                 this.$router.push('/pantry/items');
             } catch (error) {
-                console.error('Error updating pantry item:', error);
                 this.validationMessage = error.message;
                 this.showPopup = true;
                 this.hideErrorMessageAfterDelay();

@@ -1,0 +1,117 @@
+.recipe-container {
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 80%;
+  height: 100%;
+  padding: 20px;
+  border: 1px solid rgba(192, 192, 192, 0.348);
+  background-color: rgba(28, 28, 28, 0.9);
+}
+
+.loader-container {
+  text-align: center !important;
+}
+
+.recipe-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-photo {
+  width: 100%;
+  text-align: center;
+}
+
+.photo {
+  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.silver-text {
+  color: silver;
+}
+
+.ingredients-container {
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(192, 192, 192, 0.348);
+  margin-right: 20px;
+  color: silver;
+}
+
+.ingredients-container h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.ingredients-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ingredients-container li {
+  margin-bottom: 5px;
+}
+
+.nutritional-values-container {
+  width: 100%;
+
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(192, 192, 192, 0.348);
+  color: silver;
+}
+
+.nutritional-values-container h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.nutritional-values-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nutritional-values-container li {
+  margin-bottom: 5px;
+}
+.description-container {
+  width: 100%;
+
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(192, 192, 192, 0.348);
+
+  color: silver;
+}
+
+.description-container h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.description-container p {
+  margin-bottom: 5px;
+}
+.rating-container {
+    span {
+        color: silver; 
+        cursor: pointer;
+
+        &:hover {
+            @for $i from 1 through 5 {
+                &:nth-child(-n + #{$i}) {
+                    color: gold; // Fill stars up to the hovered one
+                }
+            }
+        }
+
+        &.star-filled {
+            color: gold; // Gold color for filled stars
+        }
+    }
+}

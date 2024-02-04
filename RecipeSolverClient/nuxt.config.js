@@ -76,7 +76,7 @@ export default {
         },
         endpoints: {
           login: { url: '/api/auth/login', method: 'post' },
-          logout: { url: '/api/auth/logout', method: 'post' },
+          logout: { },
           user: false // Disable automatic fetching of user data after login
         }
       }
