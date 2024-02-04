@@ -12,6 +12,7 @@
                         <span v-if="recipe.overallRating" class="rating-label">Ocena: {{ recipe.overallRating }}</span>
                         <span class="ratings-number">Ilość ocen: {{ recipe.ratingsNumber }}</span>
                         <span class="label-over-photo">{{ recipe.title }}</span>
+                        <span class="delete-over-photo"><v-btn><v-icon>mdi-delete</v-icon></v-btn></span>
                         <img :src="`data:image/jpeg;base64,${recipe.photo}`" alt="Recipe Photo" class="recipe-image" />
                     </div>
                 </a>

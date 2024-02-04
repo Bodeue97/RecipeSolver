@@ -321,5 +321,47 @@ namespace RecipeSolverAPI.Services.Auth
                 throw new Exception(error.Message);
             }
         }
+        public async Task<List<UserDto>> GetAll()
+        {
+            try
+            {
+               var users = await _context.Users
+                    .Include(pi => pi.PantryItems)
+                    .ThenInclude(pi => pi.Product)
+                    .ToListAsync();
+                    
+               
+
+                return _mapper.Map<List<UserDto>>(users);
+            }
+            catch (Exception error)
+            {
+                throw new Exception(error.Message);
+            }
+        }
+
+        public async Task<int> Delete(int id)
+        {
+            try
+            {
+                var user = await _context.Users
+                    .Include(pi => pi.PantryItems)
+                    .ThenInclude(pi => pi.Product)
+                    .FirstOrDefaultAsync(u => u.Id == id);
+                if (user == null)
+                {
+                    throw new Exception("User not found");
+                }
+ 
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+
+                return id;
+            }
+            catch (Exception error)
+            {
+                throw new Exception(error.Message);
+            }
+        }
     }
 }
